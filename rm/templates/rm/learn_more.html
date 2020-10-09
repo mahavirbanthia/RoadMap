@@ -1,0 +1,31 @@
+{% extends 'rm/basic.html' %}
+{% block title%} {{courses.course_name}} {%endblock%}
+{%block body%}
+{% load static %}
+<div class="container">
+    <div class = "row Learn_more">
+    <div class= "col-md-4">
+    
+        <img src='/media/{{courses.img}} ' class="d-block w-100 "  alt="...">
+    </div>
+    
+    <div class="col-md-8">
+        <h3>{{courses.course_name}}</h3>
+        <p style="color: seashell;">{{courses.short_desc }}</p>
+        {% if courses.status %}
+    <a href="/rm/save/{{courses.id}}">
+    <button class="save btn btn-secondary"> Saved </button>
+    </a>
+    {% else %}
+    <a href="/rm/save/{{courses.id}}">
+        <button class="save btn btn-secondary"> Save </button>
+    </a>            
+    {% endif %}
+    </div>
+    
+    </div>
+    <p id="learn_more_text">{{courses.brief_desc|safe}}</p>
+    <!-- <p id="learn_more_text">{{file_content|linebreaks}}</p> -->
+
+</div>
+{%endblock%}     

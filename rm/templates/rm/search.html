@@ -1,0 +1,50 @@
+{% extends 'rm/basic.html'  %}
+
+{% block title%} body {% endblock %}
+
+{% block body%}
+
+{% load static %}
+{%for category,languages in lang.items%}
+<h1 class="head_design">
+    <center>{{category}}</center>
+</h1>
+<div class="container content_design">
+    {% for i in languages %}
+    <div class="card">
+        <div class="box">
+            <div class="content">
+                <img src='/media/{{i.img}} ' class="d-block w-100 " height=125px alt="...">
+                <h4 style="color:rgb(223, 161, 161);">{{i.course_name}}</h4>
+                <p style="color :#fff;">{{i.show_desc}}</p>
+                <a id="road_map" href="/rm/learn_more/{{i.id}}">Learn more</a>
+                {% if i.status %}
+                <a href="/rm/save/{{i.id}}">
+                    <button class="save btn btn-secondary"> Saved </button>
+                </a>
+                {% else %}
+                <a href="/rm/save/{{i.id}}">
+                    <button class="save btn btn-secondary"> Save </button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+{% endfor %}
+
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+    {% if (msg|length != 0) %}
+    alert('{{msg}}');
+    window.location.href = "/rm";
+    {% endif %}
+
+</script>
+{% endblock %}
